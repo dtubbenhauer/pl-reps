@@ -50,6 +50,25 @@ For example, here is the cyclic group of order eight:
 
 ![Z mod 8 Z](https://github.com/dtubbenhauer/pl-reps/blob/main/graphs.png))
 
+# The Mathematica code - plot of maps
+
+The file cyclic-maps.nb contains the plots of maps from 2d representations to the trivial representation of the cyclic group. The maps have been precomputed with coordinates stored in
+
+```
+XX
+```
+The maps are then animated (the style can be easily changed) using, for example
+
+```
+Animate[{Plot3D[PlotFunction[n, a, b], {a, -3, 3}, {b, -3, 3}, 
+   PlotPoints -> 45, ImageSize -> 400, MaxRecursion -> 0], 
+  ContourPlot[PlotFunction[n, a, b], {a, -3, 3}, {b, -3, 3}, 
+   PlotPoints -> 40, ImageSize -> 400, MaxRecursion -> 0]}, {n, 1, 8, 
+  1}, LabelStyle -> {20}, DefaultDuration -> 70]
+```
+One gets the following pictures:
+
+![A map](https://github.com/dtubbenhauer/pl-reps/blob/main/to-trivial.png))
 
 # Erratum
 
