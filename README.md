@@ -44,7 +44,7 @@ The rest of the code is for visualiztion purpuses only.
 
 For example, here is the cyclic group of order eight:
 
-![The dimension 3 case]([https://github.com/dtubbenhauer/growth-pfdim/blob/main/growth-pfdim-mathematica.png](https://github.com/dtubbenhauer/pl-reps/blob/main/graphs.png))
+![Z mod 8 Z](https://github.com/dtubbenhauer/pl-reps/blob/main/graphs.png))
 
 
 # Erratum
