@@ -1,6 +1,10 @@
+# Interactive piecewise linear maps
+
+For an interactive version of the below see <a href="https://www.dtubbenhauer.com/pl-reps/site/index.html">https://www.dtubbenhauer.com/pl-reps/site/index.html</a>.
+
 # Code for *Equivariant neural networks and piecewise linear representation theory*
 
-I collected a bit of Mathematica code relevant for the paper *Equivariant neural networks and piecewise linear representation theory*
+I collected Mathematica code relevant for the paper *Equivariant neural networks and piecewise linear representation theory*
 <a href="https://arxiv.org/abs/2307.03044">https://arxiv.org/abs/2307.03044</a> on this page.
 
 The code is in **.n** files that can be downloaded from this site and you can run it with Mathematica.
