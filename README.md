@@ -68,7 +68,13 @@ Animate[{Plot3D[PlotFunction[n, a, b], {a, -3, 3}, {b, -3, 3},
 ```
 One gets the following pictures:
 
-![A map](https://github.com/dtubbenhauer/pl-reps/blob/main/to-trivial.png))
+![A map](https://github.com/dtubbenhauer/pl-reps/blob/main/to-trivial.png)
+
+# The actual calculations
+
+The actual calculations are contained in the file cyclic.nb.
+
+The file is badly documented, sorry for that. Feel free to shot me an email fi you need details.
 
 # Erratum
 
