@@ -1,0 +1,816 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 12.3' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[     30992,        808]
+NotebookOptionsPosition[     29930,        781]
+NotebookOutlinePosition[     30354,        798]
+CellTagsIndexPosition[     30311,        795]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"SizeTable", ":=", 
+   RowBox[{"{", 
+    RowBox[{
+    "0.07", ",", "0.2", ",", "0.2", ",", "0.3", ",", "0.3", ",", "0.3", ",", 
+     "0.4", ",", "0.4", ",", "0.4", ",", "0.4", ",", "0.5", ",", "0.5", ",", 
+     "0.6", ",", "0.7", ",", "0.8", ",", "0.8", ",", "0.9", ",", "0.9", ",", 
+     "1.1", ",", "1"}], "}"}]}], ";"}], "\n", 
+ RowBox[{
+  RowBox[{
+   RowBox[{
+    RowBox[{"Size", "[", "n_", "]"}], ":=", 
+    RowBox[{"SizeTable", "[", 
+     RowBox[{"[", "n", "]"}], "]"}]}], ";"}], "\n", 
+  RowBox[{"(*", 
+   RowBox[{"--", 
+    RowBox[{"--", 
+     RowBox[{"--", 
+      RowBox[{"--", 
+       RowBox[{"--", 
+        RowBox[{"--", "--"}]}]}]}]}]}], "*)"}]}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{
+    RowBox[{"Division", "[", "n_", "]"}], ":=", 
+    RowBox[{"Table", "[", 
+     RowBox[{"i", ",", 
+      RowBox[{"{", 
+       RowBox[{"i", ",", "0", ",", 
+        RowBox[{"n", "/", "2"}]}], "}"}]}], "]"}]}], ";"}], "\n", 
+  RowBox[{"(*", 
+   RowBox[{"--", 
+    RowBox[{"--", 
+     RowBox[{"--", 
+      RowBox[{"--", 
+       RowBox[{"--", 
+        RowBox[{"--", "--"}]}]}]}]}]}], "*)"}]}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"OrderAction", "[", 
+    RowBox[{"n_", ",", "k_"}], "]"}], ":=", 
+   RowBox[{"n", "/", 
+    RowBox[{"GCD", "[", 
+     RowBox[{"n", ",", "k"}], "]"}]}]}], ";"}], "\n", 
+ RowBox[{
+  RowBox[{
+   RowBox[{
+    RowBox[{"OrderActionP", "[", 
+     RowBox[{"n_", ",", "k_"}], "]"}], ":=", 
+    RowBox[{"If", "[", 
+     RowBox[{
+      RowBox[{
+       RowBox[{"Mod", "[", 
+        RowBox[{
+         RowBox[{"OrderAction", "[", 
+          RowBox[{"n", ",", "k"}], "]"}], ",", "2"}], "]"}], "==", "0"}], ",", 
+      RowBox[{
+       RowBox[{"OrderAction", "[", 
+        RowBox[{"n", ",", "k"}], "]"}], "/", "2"}], ",", 
+      RowBox[{"OrderAction", "[", 
+       RowBox[{"n", ",", "k"}], "]"}]}], "]"}]}], ";"}], 
+  "\[IndentingNewLine]", 
+  RowBox[{"(*", 
+   RowBox[{"--", 
+    RowBox[{"--", 
+     RowBox[{"--", 
+      RowBox[{"--", 
+       RowBox[{"--", 
+        RowBox[{"--", "--"}]}]}]}]}]}], "*)"}]}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{
+    RowBox[{"Dim", "[", 
+     RowBox[{"n_", ",", "k_"}], "]"}], ":=", 
+    RowBox[{"If", "[", 
+     RowBox[{
+      RowBox[{"k", "==", "0"}], ",", "1", ",", 
+      RowBox[{"If", "[", 
+       RowBox[{
+        RowBox[{"k", "!=", 
+         RowBox[{"n", "/", "2"}]}], ",", "2", ",", 
+        RowBox[{"If", "[", 
+         RowBox[{
+          RowBox[{
+           RowBox[{"Mod", "[", 
+            RowBox[{"n", ",", "2"}], "]"}], "==", "0"}], ",", "1", ",", "2"}],
+          "]"}]}], "]"}]}], "]"}]}], ";"}], "\[IndentingNewLine]", 
+  RowBox[{"(*", 
+   RowBox[{"--", 
+    RowBox[{"--", 
+     RowBox[{"--", 
+      RowBox[{"--", 
+       RowBox[{"--", 
+        RowBox[{"--", "--"}]}]}]}]}]}], "*)"}]}], "\n", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"AdMatrix", "[", "n_", "]"}], ":=", 
+   RowBox[{"Table", "[", 
+    RowBox[{
+     RowBox[{"If", "[", 
+      RowBox[{
+       RowBox[{"i", "==", "j"}], ",", "1", ",", 
+       RowBox[{"If", "[", 
+        RowBox[{
+         RowBox[{"Divisible", "[", 
+          RowBox[{
+           RowBox[{"OrderActionP", "[", 
+            RowBox[{"n", ",", 
+             RowBox[{"i", "-", "1"}]}], "]"}], ",", 
+           RowBox[{"OrderAction", "[", 
+            RowBox[{"n", ",", 
+             RowBox[{"j", "-", "1"}]}], "]"}]}], "]"}], ",", "1", ",", "0"}], 
+        "]"}]}], "]"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"i", ",", "1", ",", 
+       RowBox[{"Length", "[", 
+        RowBox[{"Division", "[", "n", "]"}], "]"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"j", ",", "1", ",", 
+       RowBox[{"Length", "[", 
+        RowBox[{"Division", "[", "n", "]"}], "]"}]}], "}"}]}], "]"}]}], 
+  ";"}], "\n", 
+ RowBox[{
+  RowBox[{
+   RowBox[{
+    RowBox[{"AdMatrixAbs", "[", "n_", "]"}], ":=", 
+    RowBox[{"Table", "[", 
+     RowBox[{
+      RowBox[{"If", "[", 
+       RowBox[{
+        RowBox[{"Divisible", "[", 
+         RowBox[{
+          RowBox[{"OrderActionP", "[", 
+           RowBox[{"n", ",", 
+            RowBox[{"i", "-", "1"}]}], "]"}], ",", 
+          RowBox[{"OrderAction", "[", 
+           RowBox[{"n", ",", 
+            RowBox[{"j", "-", "1"}]}], "]"}]}], "]"}], ",", "1", ",", "0"}], 
+       "]"}], ",", 
+      RowBox[{"{", 
+       RowBox[{"i", ",", "1", ",", 
+        RowBox[{"Length", "[", 
+         RowBox[{"Division", "[", "n", "]"}], "]"}]}], "}"}], ",", 
+      RowBox[{"{", 
+       RowBox[{"j", ",", "1", ",", 
+        RowBox[{"Length", "[", 
+         RowBox[{"Division", "[", "n", "]"}], "]"}]}], "}"}]}], "]"}]}], 
+   ";"}], "\[IndentingNewLine]", 
+  RowBox[{"(*", 
+   RowBox[{"--", 
+    RowBox[{"--", 
+     RowBox[{"--", 
+      RowBox[{"--", 
+       RowBox[{"--", 
+        RowBox[{"--", "--"}]}]}]}]}]}], "*)"}]}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"CyGraph", "[", "n_", "]"}], ":=", 
+   RowBox[{"AdjacencyGraph", "[", 
+    RowBox[{
+     RowBox[{"AdMatrix", "[", "n", "]"}], ",", 
+     RowBox[{"VertexLabels", "->", 
+      RowBox[{"Table", "[", 
+       RowBox[{
+        RowBox[{"i", "->", 
+         RowBox[{"Placed", "[", 
+          RowBox[{
+           RowBox[{"i", "-", "1"}], ",", "Center"}], "]"}]}], ",", 
+        RowBox[{"{", 
+         RowBox[{"i", ",", "1", ",", 
+          RowBox[{"Length", "[", 
+           RowBox[{"Division", "[", "n", "]"}], "]"}]}], "}"}]}], "]"}]}], 
+     ",", 
+     RowBox[{"VertexSize", "->", 
+      RowBox[{"Size", "[", "n", "]"}]}], ",", 
+     RowBox[{"GraphLayout", "->", "\"\<LayeredDigraphEmbedding\>\""}], ",", 
+     RowBox[{"EdgeStyle", "->", 
+      RowBox[{"Directive", "[", 
+       RowBox[{
+        RowBox[{"Thickness", "[", "0.005", "]"}], ",", "Blue"}], "]"}]}], ",", 
+     RowBox[{"VertexLabelStyle", "->", 
+      RowBox[{"Directive", "[", 
+       RowBox[{"20", ",", "Blue", ",", "Bold"}], "]"}]}], ",", 
+     RowBox[{"VertexStyle", "->", "Pink"}], ",", 
+     RowBox[{"DirectedEdges", "->", "True"}], ",", 
+     RowBox[{"ImageSize", "\[Rule]", "Large"}]}], "]"}]}], ";"}], "\n", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"CyGraphOrd", "[", "n_", "]"}], ":=", 
+   RowBox[{"AdjacencyGraph", "[", 
+    RowBox[{
+     RowBox[{"AdMatrix", "[", "n", "]"}], ",", 
+     RowBox[{"VertexLabels", "->", 
+      RowBox[{"Table", "[", 
+       RowBox[{
+        RowBox[{"i", "->", 
+         RowBox[{"Placed", "[", 
+          RowBox[{
+           RowBox[{"OrderAction", "[", 
+            RowBox[{"n", ",", 
+             RowBox[{"i", "-", "1"}]}], "]"}], ",", "Center"}], "]"}]}], ",", 
+        
+        RowBox[{"{", 
+         RowBox[{"i", ",", "1", ",", 
+          RowBox[{"Length", "[", 
+           RowBox[{"Division", "[", "n", "]"}], "]"}]}], "}"}]}], "]"}]}], 
+     ",", 
+     RowBox[{"VertexSize", "->", 
+      RowBox[{"Size", "[", "n", "]"}]}], ",", 
+     RowBox[{"GraphLayout", "->", "\"\<LayeredDigraphEmbedding\>\""}], ",", 
+     RowBox[{"EdgeStyle", "->", 
+      RowBox[{"Directive", "[", 
+       RowBox[{
+        RowBox[{"Thickness", "[", "0.005", "]"}], ",", "Blue"}], "]"}]}], ",", 
+     RowBox[{"VertexLabelStyle", "->", 
+      RowBox[{"Directive", "[", 
+       RowBox[{"20", ",", "Blue", ",", "Bold"}], "]"}]}], ",", 
+     RowBox[{"VertexStyle", "->", "Pink"}], ",", 
+     RowBox[{"DirectedEdges", "->", "True"}], ",", 
+     RowBox[{"ImageSize", "\[Rule]", "Large"}]}], "]"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"CyGraphDim", "[", "n_", "]"}], ":=", 
+   RowBox[{"AdjacencyGraph", "[", 
+    RowBox[{
+     RowBox[{"AdMatrix", "[", "n", "]"}], ",", 
+     RowBox[{"VertexLabels", "->", 
+      RowBox[{"Table", "[", 
+       RowBox[{
+        RowBox[{"i", "->", 
+         RowBox[{"Placed", "[", 
+          RowBox[{
+           RowBox[{"Dim", "[", 
+            RowBox[{"n", ",", 
+             RowBox[{"i", "-", "1"}]}], "]"}], ",", "Center"}], "]"}]}], ",", 
+        
+        RowBox[{"{", 
+         RowBox[{"i", ",", "1", ",", 
+          RowBox[{"Length", "[", 
+           RowBox[{"Division", "[", "n", "]"}], "]"}]}], "}"}]}], "]"}]}], 
+     ",", 
+     RowBox[{"VertexSize", "->", 
+      RowBox[{"Size", "[", "n", "]"}]}], ",", 
+     RowBox[{"GraphLayout", "->", "\"\<LayeredDigraphEmbedding\>\""}], ",", 
+     RowBox[{"EdgeStyle", "->", 
+      RowBox[{"Directive", "[", 
+       RowBox[{
+        RowBox[{"Thickness", "[", "0.005", "]"}], ",", "Blue"}], "]"}]}], ",", 
+     RowBox[{"VertexLabelStyle", "->", 
+      RowBox[{"Directive", "[", 
+       RowBox[{"20", ",", "Blue", ",", "Bold"}], "]"}]}], ",", 
+     RowBox[{"VertexStyle", "->", "Pink"}], ",", 
+     RowBox[{"DirectedEdges", "->", "True"}], ",", 
+     RowBox[{"ImageSize", "\[Rule]", "Large"}]}], "]"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"CyGraphAbs", "[", "n_", "]"}], ":=", 
+   RowBox[{"AdjacencyGraph", "[", 
+    RowBox[{
+     RowBox[{"AdMatrixAbs", "[", "n", "]"}], ",", 
+     RowBox[{"VertexLabels", "->", 
+      RowBox[{"Table", "[", 
+       RowBox[{
+        RowBox[{"i", "->", 
+         RowBox[{"Placed", "[", 
+          RowBox[{
+           RowBox[{"i", "-", "1"}], ",", "Center"}], "]"}]}], ",", 
+        RowBox[{"{", 
+         RowBox[{"i", ",", "1", ",", 
+          RowBox[{"Length", "[", 
+           RowBox[{"Division", "[", "n", "]"}], "]"}]}], "}"}]}], "]"}]}], 
+     ",", 
+     RowBox[{"VertexSize", "->", 
+      RowBox[{"Size", "[", "n", "]"}]}], ",", 
+     RowBox[{"GraphLayout", "->", "\"\<LayeredDigraphEmbedding\>\""}], ",", 
+     RowBox[{"EdgeStyle", "->", 
+      RowBox[{"Directive", "[", 
+       RowBox[{
+        RowBox[{"Thickness", "[", "0.005", "]"}], ",", "Blue"}], "]"}]}], ",", 
+     RowBox[{"VertexLabelStyle", "->", 
+      RowBox[{"Directive", "[", 
+       RowBox[{"20", ",", "Blue", ",", "Bold"}], "]"}]}], ",", 
+     RowBox[{"VertexStyle", "->", "Pink"}], ",", 
+     RowBox[{"DirectedEdges", "->", "True"}], ",", 
+     RowBox[{"ImageSize", "\[Rule]", "Large"}]}], "]"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"CyGraphAbsOrd", "[", "n_", "]"}], ":=", 
+   RowBox[{"AdjacencyGraph", "[", 
+    RowBox[{
+     RowBox[{"AdMatrixAbs", "[", "n", "]"}], ",", 
+     RowBox[{"VertexLabels", "->", 
+      RowBox[{"Table", "[", 
+       RowBox[{
+        RowBox[{"i", "->", 
+         RowBox[{"Placed", "[", 
+          RowBox[{
+           RowBox[{"OrderAction", "[", 
+            RowBox[{"n", ",", 
+             RowBox[{"i", "-", "1"}]}], "]"}], ",", "Center"}], "]"}]}], ",", 
+        
+        RowBox[{"{", 
+         RowBox[{"i", ",", "1", ",", 
+          RowBox[{"Length", "[", 
+           RowBox[{"Division", "[", "n", "]"}], "]"}]}], "}"}]}], "]"}]}], 
+     ",", 
+     RowBox[{"VertexSize", "->", 
+      RowBox[{"Size", "[", "n", "]"}]}], ",", 
+     RowBox[{"GraphLayout", "->", "\"\<LayeredDigraphEmbedding\>\""}], ",", 
+     RowBox[{"EdgeStyle", "->", 
+      RowBox[{"Directive", "[", 
+       RowBox[{
+        RowBox[{"Thickness", "[", "0.005", "]"}], ",", "Blue"}], "]"}]}], ",", 
+     RowBox[{"VertexLabelStyle", "->", 
+      RowBox[{"Directive", "[", 
+       RowBox[{"20", ",", "Blue", ",", "Bold"}], "]"}]}], ",", 
+     RowBox[{"VertexStyle", "->", "Pink"}], ",", 
+     RowBox[{"DirectedEdges", "->", "True"}], ",", 
+     RowBox[{"ImageSize", "\[Rule]", "Large"}]}], "]"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"CyGraphAbsDim", "[", "n_", "]"}], ":=", 
+   RowBox[{"AdjacencyGraph", "[", 
+    RowBox[{
+     RowBox[{"AdMatrixAbs", "[", "n", "]"}], ",", 
+     RowBox[{"VertexLabels", "->", 
+      RowBox[{"Table", "[", 
+       RowBox[{
+        RowBox[{"i", "->", 
+         RowBox[{"Placed", "[", 
+          RowBox[{
+           RowBox[{"Dim", "[", 
+            RowBox[{"n", ",", 
+             RowBox[{"i", "-", "1"}]}], "]"}], ",", "Center"}], "]"}]}], ",", 
+        
+        RowBox[{"{", 
+         RowBox[{"i", ",", "1", ",", 
+          RowBox[{"Length", "[", 
+           RowBox[{"Division", "[", "n", "]"}], "]"}]}], "}"}]}], "]"}]}], 
+     ",", 
+     RowBox[{"VertexSize", "->", 
+      RowBox[{"Size", "[", "n", "]"}]}], ",", 
+     RowBox[{"GraphLayout", "->", "\"\<LayeredDigraphEmbedding\>\""}], ",", 
+     RowBox[{"EdgeStyle", "->", 
+      RowBox[{"Directive", "[", 
+       RowBox[{
+        RowBox[{"Thickness", "[", "0.005", "]"}], ",", "Blue"}], "]"}]}], ",", 
+     RowBox[{"VertexLabelStyle", "->", 
+      RowBox[{"Directive", "[", 
+       RowBox[{"20", ",", "Blue", ",", "Bold"}], "]"}]}], ",", 
+     RowBox[{"VertexStyle", "->", "Pink"}], ",", 
+     RowBox[{"DirectedEdges", "->", "True"}], ",", 
+     RowBox[{"ImageSize", "\[Rule]", "Large"}]}], "]"}]}], ";"}]}], "Input",
+ CellChangeTimes->{{3.893108529106122*^9, 3.8931085563179913`*^9}, {
+   3.893108634635263*^9, 3.893108793549087*^9}, {3.893109295362171*^9, 
+   3.893109468082016*^9}, {3.893109555216215*^9, 3.8931096075700703`*^9}, {
+   3.893109707852975*^9, 3.8931097387699833`*^9}, {3.893109784481686*^9, 
+   3.8931098153468924`*^9}, {3.893109897377844*^9, 3.893109901100697*^9}, {
+   3.8931101158112497`*^9, 3.893110190928896*^9}, {3.8931106088221207`*^9, 
+   3.893110616437771*^9}, {3.893110654367426*^9, 3.8931106549662848`*^9}, {
+   3.893110860606371*^9, 3.8931108856790037`*^9}, {3.893111820474578*^9, 
+   3.893111853969236*^9}, {3.893111885584569*^9, 3.8931119226009274`*^9}, {
+   3.8931119527056503`*^9, 3.893111995836977*^9}, {3.893113126675754*^9, 
+   3.893113154971332*^9}, 3.8931160559122877`*^9, {3.893116155636698*^9, 
+   3.893116160457561*^9}, {3.893116358896468*^9, 3.893116363298641*^9}, {
+   3.8931165202735853`*^9, 3.8931165810726*^9}, {3.893116696995376*^9, 
+   3.8931167784730587`*^9}, {3.89312369574833*^9, 3.893123698996085*^9}, {
+   3.893123751588644*^9, 3.893123756424348*^9}},
+ CellLabel->"In[1]:=",ExpressionUUID->"3ea63fd7-9ee9-4b96-86d8-0521808a6464"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"EmbedCode", "[", 
+  RowBox[{"CloudDeploy", "[", 
+   RowBox[{
+    RowBox[{"Magnify", "[", 
+     RowBox[{
+      RowBox[{"Manipulate", "[", 
+       RowBox[{
+        RowBox[{"f", "[", "n", "]"}], ",", 
+        RowBox[{"{", 
+         RowBox[{
+          RowBox[{"{", 
+           RowBox[{"n", ",", "5"}], "}"}], ",", "1", ",", "20", ",", "1", ",", 
+          RowBox[{"Appearance", "->", "\"\<Open\>\""}]}], "}"}], ",", 
+        RowBox[{"{", 
+         RowBox[{"f", ",", 
+          RowBox[{"{", 
+           RowBox[{
+            RowBox[{"CyGraph", "->", "Label"}], ",", 
+            RowBox[{"CyGraphOrd", "->", "Order"}], ",", 
+            RowBox[{"CyGraphDim", "->", "Dim"}]}], "}"}]}], "}"}], ",", 
+        RowBox[{"LabelStyle", "->", 
+         RowBox[{"{", "20", "}"}]}]}], "]"}], ",", "2"}], "]"}], ",", 
+    RowBox[{"Permissions", "\[Rule]", "\"\<Public\>\""}]}], "]"}], 
+  "]"}]], "Input",
+ CellChangeTimes->{{3.8931101991502657`*^9, 3.893110306204278*^9}, {
+   3.8931103368002033`*^9, 3.893110357038209*^9}, {3.893110504394086*^9, 
+   3.893110513717554*^9}, 3.893111938760661*^9, {3.8931120058951063`*^9, 
+   3.893112027336276*^9}, 3.893112865028989*^9, {3.893116061772478*^9, 
+   3.893116064199349*^9}, 3.893116141740906*^9, {3.893116548416224*^9, 
+   3.893116548957984*^9}, {3.893116597848515*^9, 3.893116667862067*^9}, {
+   3.89311678795506*^9, 3.893116793310472*^9}, {3.893123445369413*^9, 
+   3.893123452376258*^9}, {3.8931236422175913`*^9, 3.893123649462668*^9}, 
+   3.8931237267134027`*^9, {3.893891903564476*^9, 3.893891906321027*^9}, {
+   3.8938919380093403`*^9, 3.8938919536906233`*^9}, 3.893892021697299*^9, {
+   3.893892051800448*^9, 3.893892061862082*^9}, {3.893892138525313*^9, 
+   3.893892147288526*^9}, 3.893892473667239*^9, {3.893892943558374*^9, 
+   3.893892943805382*^9}, {3.8938929834629927`*^9, 3.893892985734894*^9}},
+ CellLabel->"In[34]:=",ExpressionUUID->"5f47b253-2e03-4893-8e34-417f1010319b"],
+
+Cell[BoxData[
+ InterpretationBox[
+  FrameBox[
+   PanelBox[
+    TagBox[GridBox[{
+       {
+        StyleBox["\<\"Embeddable Code\"\>", "ControlStyle",
+         StripOnInput->False,
+         FontSize->Larger,
+         FontWeight->Bold,
+         FontColor->GrayLevel[0.3]]},
+       {
+        StyleBox["\<\"Use the code below to call the Wolfram Cloud function \
+from HTML:\"\>",
+         StripOnInput->False,
+         FontColor->RGBColor[0.23, 0.23, 0.23]]},
+       {
+        FrameBox[
+         TagBox[GridBox[{
+            {
+             TagBox[GridBox[{
+                {
+                 TagBox[GridBox[{
+                    {
+                    StyleBox["\<\"Code\"\>", "ControlStyle",
+                    StripOnInput->False,
+                    FontWeight->Bold,
+                    FontColor->RGBColor[0.33, 0.33, 0.33]]},
+                    {
+                    StyleBox["\<\"\"\>",
+                    StripOnInput->False,
+                    FontColor->RGBColor[0.33, 0.33, 0.33]]}
+                   },
+                   DefaultBaseStyle->"Column",
+                   GridBoxAlignment->{"Columns" -> {{Left}}},
+                   
+                   GridBoxItemSize->{
+                    "Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}],
+                  "Column"], 
+                 ItemBox[
+                  ButtonBox["\<\"Copy to Clipboard\"\>",
+                   
+                   Appearance:>FEPrivate`FrontEndResource[
+                    "FEExpressions", "GrayButtonNinePatchAppearance"],
+                   BaseStyle->"DialogStyle",
+                   
+                   ButtonFunction:>CopyToClipboard[
+                    "<iframe \
+src=\"https://www.wolframcloud.com/obj/445921fd-d111-42ff-9ba7-087c8293eec1?_\
+embed=iframe\" width=\"600\" height=\"800\"></iframe>"],
+                   Evaluator->Automatic,
+                   FrameMargins->{{10, 10}, {0, 0}},
+                   ImageSize->Automatic,
+                   Method->"Queued"],
+                  Alignment->Right,
+                  StripOnInput->False]}
+               },
+               AutoDelete->False,
+               GridBoxAlignment->{"Columns" -> {{Left}}, "Rows" -> {{Top}}},
+               GridBoxItemSize->{"Columns" -> {{Fit}}, "Rows" -> {{Fit}}}],
+              "Grid"]},
+            {
+             FrameBox[
+              PaneBox[Cell["\<\
+<iframe src=\"https://www.wolframcloud.com/obj/445921fd-d111-42ff-9ba7-\
+087c8293eec1?_embed=iframe\" width=\"600\" height=\"800\"></iframe>\
+\>",
+                Editable->False,
+                Deployed->False,ExpressionUUID->
+                "d73251ac-2380-4ad9-ba9c-cd5507d93db1"],
+               AppearanceElements->{},
+               ImageSize->{
+                 Scaled[1], 60},
+               Scrollbars->Automatic],
+              Background->GrayLevel[1],
+              BaseStyle->"StandardForm",
+              FrameStyle->RGBColor[0.69, 0.69, 0.69],
+              StripOnInput->False]}
+           },
+           DefaultBaseStyle->"Column",
+           GridBoxAlignment->{"Columns" -> {{Left}}},
+           GridBoxItemSize->{"Columns" -> {{Fit}}, "Rows" -> {{Fit}}},
+           GridBoxSpacings->{"Columns" -> {{0}}, "Rows" -> {0.2, {0.5}}}],
+          "Column"],
+         Background->RGBColor[0.96, 0.96, 0.96],
+         FrameMargins->{{14, 14}, {14, 10}},
+         FrameStyle->RGBColor[0.69, 0.69, 0.69],
+         StripOnInput->False]}
+      },
+      DefaultBaseStyle->"Column",
+      GridBoxAlignment->{"Columns" -> {{Left}}},
+      GridBoxItemSize->{"Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}},
+      GridBoxSpacings->{"Columns" -> {{0}}, "Rows" -> {0.3, 0.4, 0.8, 1.5}}],
+     "Column"],
+    Background->RGBColor[0.87, 0.87, 0.87],
+    BaseStyle->{"Deploy"},
+    ImageSize->630],
+   Background->RGBColor[0.87, 0.87, 0.87],
+   FrameMargins->{{2, 2}, {1, 1}},
+   FrameStyle->RGBColor[0.76, 0.76, 0.76],
+   RoundingRadius->6,
+   StripOnInput->False],
+  EmbeddingObject[
+   Association[
+   "EnvironmentName" -> "HTML", "CodeSection" -> 
+    Association[
+     "Content" -> 
+      "<iframe src=\"https://www.wolframcloud.com/obj/445921fd-d111-42ff-9ba7-\
+087c8293eec1?_embed=iframe\" width=\"600\" height=\"800\"></iframe>", "Title" -> 
+      Automatic, "Filename" -> "cloudembed.html"], "CloudObject" -> 
+    CloudObject[
+     "https://www.wolframcloud.com/obj/445921fd-d111-42ff-9ba7-087c8293eec1"]]\
+]]], "Output",
+ CellChangeTimes->{
+  3.893116066281414*^9, {3.8931161427466183`*^9, 3.893116164882292*^9}, 
+   3.8931163948945*^9, 3.893116551435198*^9, {3.893116635978754*^9, 
+   3.893116669756459*^9}, {3.893116795352426*^9, 3.893116800695703*^9}, 
+   3.893123455444971*^9, 3.893123650889648*^9, {3.8931237042781687`*^9, 
+   3.8931237280393333`*^9}, 3.893891968026065*^9, 3.893892477600705*^9, 
+   3.893893065656098*^9},
+ CellLabel->"Out[34]=",ExpressionUUID->"3fa6c00f-131a-4d1b-8228-39f389299b6b"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"EmbedCode", "[", 
+  RowBox[{"CloudDeploy", "[", 
+   RowBox[{
+    RowBox[{"Magnify", "[", 
+     RowBox[{
+      RowBox[{"Manipulate", "[", 
+       RowBox[{
+        RowBox[{"f", "[", "n", "]"}], ",", 
+        RowBox[{"{", 
+         RowBox[{
+          RowBox[{"{", 
+           RowBox[{"n", ",", "5"}], "}"}], ",", "1", ",", "20", ",", "1", ",", 
+          RowBox[{"Appearance", "->", "\"\<Open\>\""}]}], "}"}], ",", 
+        RowBox[{"{", 
+         RowBox[{"f", ",", 
+          RowBox[{"{", 
+           RowBox[{
+            RowBox[{"CyGraphAbs", "->", "Label"}], ",", 
+            RowBox[{"CyGraphAbsOrd", "->", "Order"}], ",", 
+            RowBox[{"CyGraphAbsDim", "->", "Dim"}]}], "}"}]}], "}"}], ",", 
+        RowBox[{"LabelStyle", "->", 
+         RowBox[{"{", "20", "}"}]}]}], "]"}], ",", "2"}], "]"}], ",", 
+    RowBox[{"Permissions", "\[Rule]", "\"\<Public\>\""}]}], "]"}], 
+  "]"}]], "Input",
+ CellChangeTimes->{{3.893116829918118*^9, 3.893116837606786*^9}, {
+   3.89389190697753*^9, 3.8938919082750063`*^9}, 3.8938919588036737`*^9, {
+   3.89389205040625*^9, 3.893892058553343*^9}, {3.893892570621682*^9, 
+   3.893892579363655*^9}, {3.893893011222886*^9, 3.893893012995181*^9}},
+ CellLabel->"",ExpressionUUID->"a911d6a7-4302-4ca4-aa5f-6384b5c22fac"],
+
+Cell[BoxData[
+ InterpretationBox[
+  FrameBox[
+   PanelBox[
+    TagBox[GridBox[{
+       {
+        StyleBox["\<\"Embeddable Code\"\>", "ControlStyle",
+         StripOnInput->False,
+         FontSize->Larger,
+         FontWeight->Bold,
+         FontColor->GrayLevel[0.3]]},
+       {
+        StyleBox["\<\"Use the code below to call the Wolfram Cloud function \
+from HTML:\"\>",
+         StripOnInput->False,
+         FontColor->RGBColor[0.23, 0.23, 0.23]]},
+       {
+        FrameBox[
+         TagBox[GridBox[{
+            {
+             TagBox[GridBox[{
+                {
+                 TagBox[GridBox[{
+                    {
+                    StyleBox["\<\"Code\"\>", "ControlStyle",
+                    StripOnInput->False,
+                    FontWeight->Bold,
+                    FontColor->RGBColor[0.33, 0.33, 0.33]]},
+                    {
+                    StyleBox["\<\"\"\>",
+                    StripOnInput->False,
+                    FontColor->RGBColor[0.33, 0.33, 0.33]]}
+                   },
+                   DefaultBaseStyle->"Column",
+                   GridBoxAlignment->{"Columns" -> {{Left}}},
+                   
+                   GridBoxItemSize->{
+                    "Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}],
+                  "Column"], 
+                 ItemBox[
+                  ButtonBox["\<\"Copy to Clipboard\"\>",
+                   
+                   Appearance:>FEPrivate`FrontEndResource[
+                    "FEExpressions", "GrayButtonNinePatchAppearance"],
+                   BaseStyle->"DialogStyle",
+                   
+                   ButtonFunction:>CopyToClipboard[
+                    "<iframe \
+src=\"https://www.wolframcloud.com/obj/ecb3994d-ae2d-4564-9b7d-210921901e48?_\
+embed=iframe\" width=\"600\" height=\"800\"></iframe>"],
+                   Evaluator->Automatic,
+                   FrameMargins->{{10, 10}, {0, 0}},
+                   ImageSize->Automatic,
+                   Method->"Queued"],
+                  Alignment->Right,
+                  StripOnInput->False]}
+               },
+               AutoDelete->False,
+               GridBoxAlignment->{"Columns" -> {{Left}}, "Rows" -> {{Top}}},
+               GridBoxItemSize->{"Columns" -> {{Fit}}, "Rows" -> {{Fit}}}],
+              "Grid"]},
+            {
+             FrameBox[
+              PaneBox[Cell["\<\
+<iframe src=\"https://www.wolframcloud.com/obj/ecb3994d-ae2d-4564-9b7d-\
+210921901e48?_embed=iframe\" width=\"600\" height=\"800\"></iframe>\
+\>",
+                Editable->False,
+                Deployed->False,ExpressionUUID->
+                "379d4420-bad9-4579-8a18-147d8e9e48a2"],
+               AppearanceElements->{},
+               ImageSize->{
+                 Scaled[1], 60},
+               Scrollbars->Automatic],
+              Background->GrayLevel[1],
+              BaseStyle->"StandardForm",
+              FrameStyle->RGBColor[0.69, 0.69, 0.69],
+              StripOnInput->False]}
+           },
+           DefaultBaseStyle->"Column",
+           GridBoxAlignment->{"Columns" -> {{Left}}},
+           GridBoxItemSize->{"Columns" -> {{Fit}}, "Rows" -> {{Fit}}},
+           GridBoxSpacings->{"Columns" -> {{0}}, "Rows" -> {0.2, {0.5}}}],
+          "Column"],
+         Background->RGBColor[0.96, 0.96, 0.96],
+         FrameMargins->{{14, 14}, {14, 10}},
+         FrameStyle->RGBColor[0.69, 0.69, 0.69],
+         StripOnInput->False]}
+      },
+      DefaultBaseStyle->"Column",
+      GridBoxAlignment->{"Columns" -> {{Left}}},
+      GridBoxItemSize->{"Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}},
+      GridBoxSpacings->{"Columns" -> {{0}}, "Rows" -> {0.3, 0.4, 0.8, 1.5}}],
+     "Column"],
+    Background->RGBColor[0.87, 0.87, 0.87],
+    BaseStyle->{"Deploy"},
+    ImageSize->630],
+   Background->RGBColor[0.87, 0.87, 0.87],
+   FrameMargins->{{2, 2}, {1, 1}},
+   FrameStyle->RGBColor[0.76, 0.76, 0.76],
+   RoundingRadius->6,
+   StripOnInput->False],
+  EmbeddingObject[
+   Association[
+   "EnvironmentName" -> "HTML", "CodeSection" -> 
+    Association[
+     "Content" -> 
+      "<iframe src=\"https://www.wolframcloud.com/obj/ecb3994d-ae2d-4564-9b7d-\
+210921901e48?_embed=iframe\" width=\"600\" height=\"800\"></iframe>", "Title" -> 
+      Automatic, "Filename" -> "cloudembed.html"], "CloudObject" -> 
+    CloudObject[
+     "https://www.wolframcloud.com/obj/ecb3994d-ae2d-4564-9b7d-210921901e48"]]\
+]]], "Output",
+ CellChangeTimes->{3.893116838933563*^9, 3.8931234558243856`*^9, 
+  3.89389196990407*^9},
+ CellLabel->"Out[16]=",ExpressionUUID->"6db03f9a-222c-441c-970b-e0527be2ac70"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"Magnify", "[", 
+  RowBox[{
+   RowBox[{"Manipulate", "[", 
+    RowBox[{
+     RowBox[{"f", "[", "n", "]"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{"n", ",", "5"}], "}"}], ",", "1", ",", "20", ",", "1", ",", 
+       RowBox[{"Appearance", "->", "\"\<Open\>\""}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"f", ",", 
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{"CyGraph", "->", "Label"}], ",", 
+         RowBox[{"CyGraphOrd", "->", "Order"}], ",", 
+         RowBox[{"CyGraphDim", "->", "Dim"}]}], "}"}]}], "}"}], ",", 
+     RowBox[{"LabelStyle", "->", 
+      RowBox[{"{", "20", "}"}]}]}], "]"}], ",", "2"}], "]"}]], "Input",
+ CellLabel->"In[15]:=",ExpressionUUID->"34a6cc28-096c-4b6a-93bb-d4e856eae5ed"],
+
+Cell[BoxData[
+ StyleBox[
+  TagBox[
+   StyleBox[
+    DynamicModuleBox[{$CellContext`f$$ = $CellContext`CyGraph, \
+$CellContext`n$$ = 5, Typeset`show$$ = True, Typeset`bookmarkList$$ = {}, 
+     Typeset`bookmarkMode$$ = "Menu", Typeset`animator$$, Typeset`animvar$$ = 
+     1, Typeset`name$$ = "\"untitled\"", Typeset`specs$$ = {{{
+        Hold[$CellContext`n$$], 5}, 1, 20, 1}, {
+       Hold[$CellContext`f$$], {$CellContext`CyGraph -> 
+        Label, $CellContext`CyGraphOrd -> 
+        Order, $CellContext`CyGraphDim -> $CellContext`Dim}}}, 
+     Typeset`size$$ = {837.0596796058513, {643., 653.}}, Typeset`update$$ = 0,
+      Typeset`initDone$$, Typeset`skipInitDone$$ = True}, 
+     DynamicBox[Manipulate`ManipulateBoxes[
+      1, StandardForm, 
+       "Variables" :> {$CellContext`f$$ = $CellContext`CyGraph, \
+$CellContext`n$$ = 5}, "ControllerVariables" :> {}, 
+       "OtherVariables" :> {
+        Typeset`show$$, Typeset`bookmarkList$$, Typeset`bookmarkMode$$, 
+         Typeset`animator$$, Typeset`animvar$$, Typeset`name$$, 
+         Typeset`specs$$, Typeset`size$$, Typeset`update$$, 
+         Typeset`initDone$$, Typeset`skipInitDone$$}, 
+       "Body" :> $CellContext`f$$[$CellContext`n$$], 
+       "Specifications" :> {{{$CellContext`n$$, 5}, 1, 20, 1, Appearance -> 
+          "Open"}, {$CellContext`f$$, {$CellContext`CyGraph -> 
+           Label, $CellContext`CyGraphOrd -> 
+           Order, $CellContext`CyGraphDim -> $CellContext`Dim}}}, 
+       "Options" :> {LabelStyle -> {20}}, "DefaultOptions" :> {}],
+      ImageSizeCache->{917., {778.373046875, 788.626953125}},
+      SingleEvaluation->True],
+     Deinitialization:>None,
+     DynamicModuleValues:>{},
+     SynchronousInitialization->True,
+     UndoTrackedVariables:>{Typeset`show$$, Typeset`bookmarkMode$$},
+     UnsavedVariables:>{Typeset`initDone$$},
+     UntrackedVariables:>{Typeset`size$$}], "Manipulate",
+    Deployed->True,
+    StripOnInput->False],
+   Manipulate`InterpretManipulate[1]],
+  StripOnInput->False,
+  Magnification->2 Inherited]], "Output",
+ CellChangeTimes->{3.8938928522815*^9},
+ CellLabel->"Out[15]=",ExpressionUUID->"43312451-0190-4fce-be4f-70d58af570ff"]
+}, Open  ]]
+},
+WindowSize->{1384.5, 768.75},
+WindowMargins->{{Automatic, 0}, {0, Automatic}},
+Magnification:>0.9 Inherited,
+FrontEndVersion->"12.3 for Linux x86 (64-bit) (June 19, 2021)",
+StyleDefinitions->"Default.nb",
+ExpressionUUID->"79342aca-a0d6-48c2-9873-b3ff8ccf5122"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[558, 20, 13686, 373, 496, "Input",ExpressionUUID->"3ea63fd7-9ee9-4b96-86d8-0521808a6464"],
+Cell[CellGroupData[{
+Cell[14269, 397, 1939, 38, 28, "Input",ExpressionUUID->"5f47b253-2e03-4893-8e34-417f1010319b"],
+Cell[16211, 437, 4866, 120, 213, "Output",ExpressionUUID->"3fa6c00f-131a-4d1b-8228-39f389299b6b"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[21114, 562, 1275, 29, 48, "Input",ExpressionUUID->"a911d6a7-4302-4ca4-aa5f-6384b5c22fac"],
+Cell[22392, 593, 4549, 115, 189, "Output",ExpressionUUID->"6db03f9a-222c-441c-970b-e0527be2ac70"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[26978, 713, 777, 20, 28, "Input",ExpressionUUID->"34a6cc28-096c-4b6a-93bb-d4e856eae5ed"],
+Cell[27758, 735, 2156, 43, 1584, "Output",ExpressionUUID->"43312451-0190-4fce-be4f-70d58af570ff"]
+}, Open  ]]
+}
+]
+*)
+
