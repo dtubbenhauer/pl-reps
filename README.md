@@ -5,7 +5,7 @@ For an interactive version of the below see <a href="https://www.dtubbenhauer.co
 # Code for *Equivariant neural networks and piecewise linear representation theory*
 
 I collected Mathematica code relevant for the paper *Equivariant neural networks and piecewise linear representation theory*
-<a href="https://arxiv.org/abs/2408.00949">https://arxiv.org/abs/2408.00949</a> on this page.
+<a href="https://arxiv.org/abs/2503.15810">https://arxiv.org/abs/2503.15810</a> on this page.
 
 The code is in **.n** files that can be downloaded from this site and you can run it with Mathematica.
 
